@@ -10,9 +10,19 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var labelText: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: #selector(ViewController.promptForMsg))
+        
+    }
+    
+    func promptForMsg(){
+        labelText.text = "You clicked plus long msg"
+        return
     }
 
     override func didReceiveMemoryWarning() {
