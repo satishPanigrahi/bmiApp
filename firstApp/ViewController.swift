@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Social
 
 class ViewController: UIViewController {
 
@@ -16,8 +17,23 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: #selector(ViewController.promptForMsg))
+        //navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: #selector(ViewController.promptForMsg))
         
+        // Add for class Asisgnment - option 1
+      //  navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Action, target: self, action: #selector(ViewController.shareTapped))
+        
+        navigationItem.rightBarButtonItems = [UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: #selector(ViewController.promptForMsg)), UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Action, target: self, action: #selector(ViewController.shareTapped))]
+        
+    }
+    
+    // Added for class assignment
+    
+    func shareTapped() {
+        let vc = SLComposeViewController(forServiceType: SLServiceTypeFacebook)
+        vc.setInitialText(labelText.text)
+        presentViewController(vc, animated: true, completion: nil)
+        
+        // put check code for BMI here
     }
     
     func promptForMsg(){
@@ -42,7 +58,7 @@ class ViewController: UIViewController {
             let bmi = weight!/(height! * height!)
             // some thing like try catch
 
-            self.labelText.text = String(bmi)
+            self.labelText.text = "Your BMI is \(String(bmi))"
             
         }
         
